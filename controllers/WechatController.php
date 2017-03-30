@@ -7,7 +7,6 @@
  */
 namespace app\controllers;
 
-use EasyWeChat\Message\Text;
 use yii\web\Controller;
 use Yii;
 
