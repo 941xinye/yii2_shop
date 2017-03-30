@@ -24,6 +24,7 @@ class WechatController extends Controller
         $server->setMessageHandler(function ($message) {
             return "您好！欢迎关注我!";
         });
-        return $server->serve()->send();
+        echo $server->serve()->send();
+        exit();
     }
 }
