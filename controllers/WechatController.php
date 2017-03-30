@@ -21,8 +21,6 @@ class WechatController extends Controller
         $app = Yii::$app->wechat;
         $server = $app->server;
         $user = $app->user;
-        var_dump($server);
-        var_dump($user);exit();
         $server->setMessageHandler(function($message) use ($user) {
             $fromUser = $user->get($message->FromUserName);
             switch ($message->MsgType) {
