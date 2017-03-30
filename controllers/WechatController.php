@@ -18,10 +18,10 @@ class WechatController extends Controller
      */
     public function actionIndex()
     {
-        $app = Yii::$app->wechat;
+        $app = Yii::$app->wechat->app;
         $server = $app->server;
         $user = $app->user;
-        
+
         $server->setMessageHandler(function ($message) {
             return "您好！欢迎关注我!";
         });
