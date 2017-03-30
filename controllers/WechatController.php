@@ -20,13 +20,31 @@ class WechatController extends Controller
             return Yii::$app->wechat->authorizeRequired()->send();
         }
     }
+    private function checkSignature()
+    {
+        $signature = $_GET["signature"];
+        $timestamp = $_GET["timestamp"];
+        $nonce = $_GET["nonce"];
 
+        $token = TOKEN;
+        $tmpArr = array($token, $timestamp, $nonce);
+        sort($tmpArr, SORT_STRING);
+        $tmpStr = implode( $tmpArr );
+        $tmpStr = sha1( $tmpStr );
+
+        if( $tmpStr == $signature ){
+            return true;
+        }else{
+            return false;
+        }
+    }
     /**
      *
      * @return mixed
      */
     public function actionIndex()
     {
+        return self::checkSignature();  //接入微信验证
         $app = Yii::$app->wechat;
         $server = $app->server;
         $user = $app->user;
