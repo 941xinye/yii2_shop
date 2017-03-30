@@ -19,7 +19,7 @@ class WechatController extends Controller
     public function actionIndex()
     {
         $app = Yii::$app->wechat;
-        print_r($app);exit;
+        var_dump($app);exit();
         $server = $app->server;
         $user = $app->user;
         $server->setMessageHandler(function($message) use ($user) {
