@@ -16,10 +16,15 @@ class WechatController extends Controller
     {
         parent::init();
         // 微信网页授权:
-//        if(Yii::$app->wechat->isWechat && !Yii::$app->wechat->isAuthorized()) {
-//            return Yii::$app->wechat->authorizeRequired()->send();
-//        }
+        if(Yii::$app->wechat->isWechat && !Yii::$app->wechat->isAuthorized()) {
+            return Yii::$app->wechat->authorizeRequired()->send();
+        }
     }
+
+    /**
+     * 验证 在index.php中使用
+     * @return bool
+     */
     private function checkSignature()
     {
         $signature = $_GET["signature"];
@@ -45,8 +50,6 @@ class WechatController extends Controller
     public function actionIndex()
     {
         $app = Yii::$app->wechat;
-        return self::checkSignature();  //接入微信验证
-
         $server = $app->server;
         $user = $app->user;
         $server->setMessageHandler(function($message) use ($user) {
