@@ -18,6 +18,7 @@ class WechatController extends Controller
      */
     public function actionIndex()
     {
+        var_dump(Yii::$app->params['WECHAT']);exit;
         $app = Yii::$app->wechat->app;
         $server = $app->server;
         $user = $app->user;
