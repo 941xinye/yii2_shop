@@ -26,7 +26,7 @@ class WechatController extends Controller
         $timestamp = $_GET["timestamp"];
         $nonce = $_GET["nonce"];
 
-        $token = TOKEN;
+        $token = Yii::$app->params['WECHAT']['token'];
         $tmpArr = array($token, $timestamp, $nonce);
         sort($tmpArr, SORT_STRING);
         $tmpStr = implode( $tmpArr );
@@ -44,8 +44,9 @@ class WechatController extends Controller
      */
     public function actionIndex()
     {
-        return self::checkSignature();  //接入微信验证
         $app = Yii::$app->wechat;
+        return self::checkSignature();  //接入微信验证
+
         $server = $app->server;
         $user = $app->user;
         $server->setMessageHandler(function($message) use ($user) {
