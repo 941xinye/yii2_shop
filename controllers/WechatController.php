@@ -22,12 +22,12 @@ class WechatController extends Controller
         $app = Yii::$app->wechat->app;
         $server = $app->server;
         $user = $app->user;
-        $server->setMessageHandler(function ($message) {
-            $text = new Text(['content' => '您好！overtrue。']);
-            return $text;
+        $server->setMessageHandler(function($message) use ($user) {
+            $fromUser = $user->get($message->FromUserName);
+
+            return "{$fromUser->nickname} 您好！欢迎关注 overtrue!";
         });
 
         $server->serve()->send();
-        exit;
     }
 }
