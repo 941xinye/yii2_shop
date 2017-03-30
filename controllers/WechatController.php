@@ -12,15 +12,6 @@ use Yii;
 
 class WechatController extends Controller
 {
-    public function init()
-    {
-        parent::init();
-        // 微信网页授权:
-//        if(Yii::$app->wechat->isWechat && !Yii::$app->wechat->isAuthorized()) {
-//            return Yii::$app->wechat->authorizeRequired()->send();
-//        }
-    }
-
     /**
      *
      * @return mixed
