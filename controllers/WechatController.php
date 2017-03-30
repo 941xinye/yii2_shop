@@ -7,7 +7,7 @@
  */
 namespace app\controllers;
 
-use app\components\AppController as Controller;
+use yii\web\Controller;
 use Yii;
 
 class WechatController extends Controller
