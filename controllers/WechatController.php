@@ -7,6 +7,7 @@
  */
 namespace app\controllers;
 
+use EasyWeChat\Message\Text;
 use yii\web\Controller;
 use Yii;
 
@@ -18,14 +19,15 @@ class WechatController extends Controller
      */
     public function actionIndex()
     {
-        var_dump(Yii::$app->params['WECHAT']);exit;
         $app = Yii::$app->wechat->app;
         $server = $app->server;
         $user = $app->user;
         $server->setMessageHandler(function ($message) {
-            return "您好！欢迎关注我!";
+            $text = new Text(['content' => '您好！overtrue。']);
+            return $text;
         });
-        echo $server->serve()->send();
-        exit();
+
+        $server->serve()->send();
+        exit;
     }
 }
